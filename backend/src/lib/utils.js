@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { ENV } from './env.js';
 
 export const generateToken = (userId,res) => {
-    const {JWT_SECRET, NODE_ENV} = ENV;
+    const {JWT_SECRET} = ENV;
     if(!JWT_SECRET) {
         throw new Error('JWT_SECRET is not defined in environment variables');
     }
@@ -15,4 +15,5 @@ export const generateToken = (userId,res) => {
         secure: ENV.NODE_ENV === 'development' ? false : true,
         sameSite: 'Strict',
     });
+    return token;
 }
